@@ -1,6 +1,5 @@
-
-import React, { useState } from 'react';
-import { ArrowUpRight, Home, Shield, CreditCard, Calendar, ThermometerSnowflake, X, BellRing, Award, Star } from 'lucide-react';
+import React from 'react';
+import { ArrowUpRight, Home, Shield, CreditCard, Calendar, Award, Star } from 'lucide-react';
 import OverviewCard from '@/components/dashboard/OverviewCard';
 import HomeValueChart from '@/components/dashboard/HomeValueChart';
 import NotificationCard from '@/components/dashboard/NotificationCard';
@@ -8,13 +7,9 @@ import ApplianceTracker from '@/components/dashboard/ApplianceTracker';
 import ServiceProviders from '@/components/dashboard/ServiceProviders';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { useToast } from '@/hooks/use-toast';
 import Card from '@/components/ui-custom/Card';
 
 const Dashboard: React.FC = () => {
-  const { toast } = useToast();
-  const [showWinterAlert, setShowWinterAlert] = useState(true);
-  
   const notifications = [
     {
       id: '1',
@@ -54,16 +49,8 @@ const Dashboard: React.FC = () => {
     }
   ];
 
-  const dismissAlert = () => {
-    setShowWinterAlert(false);
-    toast({
-      title: "Alert dismissed",
-      description: "You can find this information in your notifications.",
-    });
-  };
-
   return (
-    <div className="animate-fade-in">
+    <div className="animate-fade-in px-4 md:px-6">
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-2">
           <div className="bg-homebase text-white p-1.5 rounded-md">
@@ -96,47 +83,6 @@ const Dashboard: React.FC = () => {
           </Button>
         </div>
       </Card>
-      
-      {showWinterAlert && (
-        <div className="mb-8 animate-fade-in">
-          <Card 
-            variant="glass" 
-            padding="md" 
-            className="border border-blue-200 bg-gradient-to-r from-blue-50 to-homebase-light relative"
-          >
-            <div className="absolute top-3 right-3">
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="h-7 w-7 rounded-full bg-white/60 hover:bg-white/80 text-slate-500"
-                onClick={dismissAlert}
-              >
-                <X className="h-4 w-4" />
-                <span className="sr-only">Dismiss</span>
-              </Button>
-            </div>
-            
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-              <div className="flex items-center">
-                <div className="mr-4 p-3 bg-white/80 rounded-full shadow-sm">
-                  <ThermometerSnowflake className="h-6 w-6 text-blue-500" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <BellRing className="h-4 w-4 text-amber-500" />
-                    <h3 className="text-xl font-medium text-slate-800">Winter Weather Alert</h3>
-                  </div>
-                  <p className="text-slate-700">Cold temperatures expected next week. Is your home ready?</p>
-                </div>
-              </div>
-              <Button className="bg-white text-homebase hover:bg-white/90 hover:text-homebase-dark shadow-sm border border-slate-200 flex items-center gap-1.5 min-w-40 mt-2 md:mt-0">
-                Winterize Checklist
-                <ArrowUpRight className="h-4 w-4" />
-              </Button>
-            </div>
-          </Card>
-        </div>
-      )}
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8 stagger-children">
         <OverviewCard

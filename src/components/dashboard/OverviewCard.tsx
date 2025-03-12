@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { TrendingUp, AlertCircle, Shield } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 import Card from '@/components/ui-custom/Card';
 import AnimatedNumber from '@/components/ui-custom/AnimatedNumber';
 import { cn } from '@/lib/utils';
@@ -31,7 +31,8 @@ const OverviewCard: React.FC<OverviewCardProps> = ({
   const getValueFormatter = () => {
     switch (type) {
       case 'currency':
-        return (num: number) => `$${num.toLocaleString()}`;
+        // For currency, we'll handle the $ prefix in AnimatedNumber component
+        return (num: number) => num.toLocaleString();
       case 'percent':
         return (num: number) => `${num}%`;
       default:
