@@ -64,13 +64,17 @@ const Dashboard: React.FC = () => {
         <p className="text-muted-foreground mt-1">Here's what's happening with your home today.</p>
       </div>
       
-      <div className="flex flex-col md:flex-row gap-6 mb-6">
-        <HomeBaseScore score={72} className="md:w-1/2" />
-        
+      {/* HomeBase Score above the weather alert */}
+      <div className="mb-6">
+        <HomeBaseScore score={72} />
+      </div>
+      
+      {/* Weather Alert spanning full width */}
+      <div className="mb-6">
         <Card 
           variant="outline" 
           padding="md" 
-          className="md:w-1/2 border-amber-400/50 bg-amber-50"
+          className="border-amber-400/50 bg-amber-50"
         >
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex items-center">
