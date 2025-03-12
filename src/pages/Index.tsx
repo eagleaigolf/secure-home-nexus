@@ -16,7 +16,7 @@ const Index = () => {
               Your home's command center
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              For over 100 years, Sears has been the trusted foundation of American homes. Now, with HOME BASE, we're reimagining homeownership for the modern era.
+              For over 100 years, Sears has been the trusted foundation of American homes. Now, with HOMEBASE, we're reimagining homeownership for the modern era.
             </p>
             <Button 
               onClick={() => navigate('/dashboard')} 
@@ -90,7 +90,7 @@ const Index = () => {
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-4">Ready to take control of your home?</h2>
               <p className="text-lg mb-8">
-                HOME BASE by Sears helps you manage, protect, and optimize your home—all in one place.
+                HOMEBASE by Sears helps you manage, protect, and optimize your home—all in one place.
               </p>
               <Button 
                 onClick={() => navigate('/dashboard')} 
@@ -109,7 +109,7 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center mb-8">
             <div className="flex items-center gap-2 mb-4 md:mb-0">
               <Home className="h-5 w-5 text-white" />
-              <span className="font-bold text-xl">HOME BASE</span>
+              <span className="font-bold text-xl">HOMEBASE</span>
               <span className="text-xs text-slate-400 mt-0.5">by Sears</span>
             </div>
             
