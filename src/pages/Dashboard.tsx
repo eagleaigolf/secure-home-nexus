@@ -6,6 +6,7 @@ import HomeValueChart from '@/components/dashboard/HomeValueChart';
 import NotificationCard from '@/components/dashboard/NotificationCard';
 import ApplianceTracker from '@/components/dashboard/ApplianceTracker';
 import ServiceProviders from '@/components/dashboard/ServiceProviders';
+import ReplaceOrUpgrade from '@/components/dashboard/ReplaceOrUpgrade';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import Card from '@/components/ui-custom/Card';
@@ -120,6 +121,8 @@ const Dashboard: React.FC = () => {
         <HomeValueChart className="lg:col-span-2" />
         <NotificationCard notifications={notifications} />
       </div>
+
+      <ReplaceOrUpgrade />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <ApplianceTracker />
