@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { FileText, Calendar, Wrench, ArrowRight, ShoppingCart } from 'lucide-react';
+import { FileText, Calendar, Wrench, ArrowRight, ShoppingCart, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Card from '@/components/ui-custom/Card';
 import { Link } from 'react-router-dom';
