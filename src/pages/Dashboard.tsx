@@ -4,6 +4,7 @@ import { ArrowUpRight, Home, Shield, CreditCard, Calendar, ThermometerSnowflake 
 import OverviewCard from '@/components/dashboard/OverviewCard';
 import HomeValueChart from '@/components/dashboard/HomeValueChart';
 import NotificationCard from '@/components/dashboard/NotificationCard';
+import ApplianceTracker from '@/components/dashboard/ApplianceTracker';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
@@ -90,22 +91,26 @@ const Dashboard: React.FC = () => {
         <HomeValueChart className="lg:col-span-2" />
         <NotificationCard notifications={notifications} />
       </div>
-      
-      <div className="bg-gradient-to-br from-homebase-light to-white border border-homebase/10 rounded-lg p-6 mb-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center">
-            <div className="mr-4 p-3 bg-white rounded-full shadow-sm">
-              <ThermometerSnowflake className="h-6 w-6 text-homebase" />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <ApplianceTracker />
+        
+        <div className="bg-gradient-to-br from-homebase-light to-white border border-homebase/10 rounded-lg p-6">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex items-center">
+              <div className="mr-4 p-3 bg-white rounded-full shadow-sm">
+                <ThermometerSnowflake className="h-6 w-6 text-homebase" />
+              </div>
+              <div>
+                <h3 className="text-lg font-medium">Winter Weather Alert</h3>
+                <p className="text-muted-foreground">Cold temperatures expected next week. Is your home ready?</p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg font-medium">Winter Weather Alert</h3>
-              <p className="text-muted-foreground">Cold temperatures expected next week. Is your home ready?</p>
-            </div>
+            <Button className="bg-homebase hover:bg-homebase-dark shadow-sm flex items-center gap-1.5">
+              Winterize Checklist
+              <ArrowUpRight className="h-4 w-4" />
+            </Button>
           </div>
-          <Button className="bg-homebase hover:bg-homebase-dark shadow-sm flex items-center gap-1.5">
-            Winterize Checklist
-            <ArrowUpRight className="h-4 w-4" />
-          </Button>
         </div>
       </div>
       
