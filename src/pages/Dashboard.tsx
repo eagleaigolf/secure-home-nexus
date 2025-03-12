@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { ArrowUpRight, Home, Shield, CreditCard, Calendar, Award, Star } from 'lucide-react';
+import { ArrowUpRight, Home, Shield, CreditCard, Calendar, Award, Star, AlertTriangle } from 'lucide-react';
 import OverviewCard from '@/components/dashboard/OverviewCard';
 import HomeValueChart from '@/components/dashboard/HomeValueChart';
 import NotificationCard from '@/components/dashboard/NotificationCard';
@@ -63,22 +64,22 @@ const Dashboard: React.FC = () => {
       </div>
       
       <Card 
-        variant="glass" 
+        variant="outline" 
         padding="md" 
-        className="mb-6 border border-homebase/20 bg-gradient-to-r from-homebase-light to-blue-50"
+        className="mb-6 border-amber-400/50 bg-amber-50"
       >
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex items-center">
-            <div className="mr-4 p-3 bg-white/70 rounded-full shadow-sm">
-              <Star className="h-6 w-6 text-amber-500" />
+            <div className="mr-4 p-3 bg-amber-100 rounded-full shadow-sm">
+              <AlertTriangle className="h-6 w-6 text-amber-600" />
             </div>
             <div>
-              <h3 className="text-xl font-medium text-homebase-dark mb-1">Sears Home Advantage Member</h3>
-              <p className="text-slate-700">Your membership saves you $350 annually on home services</p>
+              <h3 className="text-xl font-medium text-amber-800 mb-1">Winter Weather Alert</h3>
+              <p className="text-amber-700">Schedule your pre-winter HVAC maintenance before temperatures drop for optimal performance.</p>
             </div>
           </div>
-          <Button className="bg-homebase text-white hover:bg-homebase-dark shadow-sm flex items-center gap-1.5 min-w-40 md:mt-0">
-            View Member Benefits
+          <Button className="bg-amber-600 text-white hover:bg-amber-700 shadow-sm flex items-center gap-1.5 min-w-40 md:mt-0">
+            Schedule Service
             <ArrowUpRight className="h-4 w-4" />
           </Button>
         </div>
