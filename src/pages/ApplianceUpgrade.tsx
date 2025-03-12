@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowUpRight, Star, ShoppingCart, Award, ThumbsUp } from 'lucide-react';
+import { ArrowUpRight, Star, ShoppingCart, Award, ThumbsUp, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Card from '@/components/ui-custom/Card';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ interface ApplianceOption {
   tier: 'good' | 'better' | 'best';
 }
 
-const ReplaceOrUpgrade: React.FC = () => {
+const ApplianceUpgrade: React.FC = () => {
   // Sample appliance options data
   const applianceOptions: ApplianceOption[] = [
     {
@@ -74,25 +74,25 @@ const ReplaceOrUpgrade: React.FC = () => {
   };
 
   return (
-    <div className="mb-8">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <ShoppingCart className="h-5 w-5 text-homebase" />
-          <h3 className="text-lg font-medium">Replace or Upgrade Appliances</h3>
-        </div>
-        <Link to="/appliances/upgrade">
-          <Button variant="ghost" size="sm" className="text-homebase hover:text-homebase-dark">
-            View All Options <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
-          </Button>
+    <div className="container py-6 animate-fade-in">
+      <div className="mb-6">
+        <Link to="/dashboard" className="text-homebase flex items-center gap-1 hover:underline mb-3">
+          <ArrowLeft className="h-4 w-4" />
+          Back to Dashboard
         </Link>
+        <div className="inline-block bg-homebase/10 text-homebase px-2.5 py-1 rounded text-sm font-medium mb-2">
+          Appliance Upgrade
+        </div>
+        <h1 className="text-3xl font-display font-semibold tracking-tight">Replace or Upgrade Your Appliances</h1>
+        <p className="text-muted-foreground mt-1">Find the perfect replacement that fits your needs and budget.</p>
       </div>
 
-      <Card variant="default" padding="md" className="mb-4">
+      <Card variant="default" padding="md" className="mb-6">
         <p className="text-sm text-center bg-homebase-light border border-homebase/10 text-homebase-dark p-3 rounded-md mb-4">
           Recommended by our experts to fit your space and lifestyle needs
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {applianceOptions.map((option) => (
             <div 
               key={option.id} 
@@ -135,8 +135,74 @@ const ReplaceOrUpgrade: React.FC = () => {
           ))}
         </div>
       </Card>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <Card variant="outline" padding="md" className="bg-homebase-light/50">
+          <h3 className="text-lg font-medium mb-2">Why upgrade with HOMEBASE?</h3>
+          <ul className="space-y-2">
+            <li className="flex items-start gap-2">
+              <div className="mt-1 text-homebase">
+                <CheckIcon className="h-4 w-4" />
+              </div>
+              <p className="text-sm">Expert installation by certified technicians</p>
+            </li>
+            <li className="flex items-start gap-2">
+              <div className="mt-1 text-homebase">
+                <CheckIcon className="h-4 w-4" />
+              </div>
+              <p className="text-sm">Extended warranty options available</p>
+            </li>
+            <li className="flex items-start gap-2">
+              <div className="mt-1 text-homebase">
+                <CheckIcon className="h-4 w-4" />
+              </div>
+              <p className="text-sm">Haul away and recycling of old appliances</p>
+            </li>
+            <li className="flex items-start gap-2">
+              <div className="mt-1 text-homebase">
+                <CheckIcon className="h-4 w-4" />
+              </div>
+              <p className="text-sm">Energy-efficient models that save on utility bills</p>
+            </li>
+          </ul>
+        </Card>
+
+        <Card variant="outline" padding="md" className="bg-homebase-light/50">
+          <h3 className="text-lg font-medium mb-2">Financing options available</h3>
+          <p className="text-sm mb-3">Get the appliances you need today with flexible payment options.</p>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between bg-white p-2 rounded border">
+              <span className="font-medium">No interest if paid in 12 months</span>
+              <ArrowUpRight className="h-4 w-4 text-homebase" />
+            </div>
+            <div className="flex items-center justify-between bg-white p-2 rounded border">
+              <span className="font-medium">Low monthly payments</span>
+              <ArrowUpRight className="h-4 w-4 text-homebase" />
+            </div>
+          </div>
+          <div className="mt-4">
+            <Button variant="outline" className="w-full">Learn more about financing</Button>
+          </div>
+        </Card>
+      </div>
     </div>
   );
 };
 
-export default ReplaceOrUpgrade;
+// Check icon component
+const CheckIcon = ({ className }: { className?: string }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+    className={className}
+  >
+    <polyline points="20 6 9 17 4 12" />
+  </svg>
+);
+
+export default ApplianceUpgrade;

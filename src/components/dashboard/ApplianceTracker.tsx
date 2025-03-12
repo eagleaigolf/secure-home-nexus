@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { FileText, Calendar, Wrench, Plus, ArrowRight } from 'lucide-react';
+import { FileText, Calendar, Wrench, Plus, ArrowRight, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Card from '@/components/ui-custom/Card';
 import { Link } from 'react-router-dom';
@@ -51,11 +51,19 @@ const ApplianceTracker: React.FC = () => {
     <Card variant="premium" className="overflow-hidden">
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-lg font-medium">Your Appliances</h3>
-        <Link to="/appliances">
-          <Button variant="ghost" size="sm" className="text-homebase hover:text-homebase-dark">
-            View All <ArrowRight className="ml-1 h-3.5 w-3.5" />
-          </Button>
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link to="/appliances/upgrade">
+            <Button variant="outline" size="sm" className="flex items-center gap-1.5 text-homebase hover:text-homebase-dark">
+              <ShoppingCart className="h-3.5 w-3.5" />
+              Replace / Upgrade
+            </Button>
+          </Link>
+          <Link to="/appliances">
+            <Button variant="ghost" size="sm" className="text-homebase hover:text-homebase-dark">
+              View All <ArrowRight className="ml-1 h-3.5 w-3.5" />
+            </Button>
+          </Link>
+        </div>
       </div>
 
       <div className="space-y-3">

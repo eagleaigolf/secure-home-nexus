@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import Protect from "./pages/Protect";
 import Appliances from "./pages/Appliances";
+import ApplianceUpgrade from "./pages/ApplianceUpgrade";
 import Financial from "./pages/Financial";
 import NotFound from "./pages/NotFound";
 
@@ -18,7 +19,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Helmet defaultTitle="HOME BASE by Sears" titleTemplate="%s | HOME BASE by Sears" />
+      <Helmet defaultTitle="HOMEBASE by Sears" titleTemplate="%s | HOMEBASE by Sears" />
       <Toaster />
       <Sonner />
       <BrowserRouter>
@@ -30,6 +31,7 @@ const App = () => (
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/protect" element={<Protect />} />
               <Route path="/appliances" element={<Appliances />} />
+              <Route path="/appliances/upgrade" element={<ApplianceUpgrade />} />
               <Route path="/financial" element={<Financial />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
