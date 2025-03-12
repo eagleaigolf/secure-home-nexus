@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ArrowUpRight, Home, Shield, CreditCard, Calendar, ThermometerSnowflake, X, BellRing, Award, Star } from 'lucide-react';
 import OverviewCard from '@/components/dashboard/OverviewCard';
@@ -8,6 +9,7 @@ import ServiceProviders from '@/components/dashboard/ServiceProviders';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
+import Card from '@/components/ui-custom/Card';
 
 const Dashboard: React.FC = () => {
   const { toast } = useToast();
@@ -73,32 +75,40 @@ const Dashboard: React.FC = () => {
         <p className="text-muted-foreground mt-1">Here's what's happening with your home today.</p>
       </div>
       
-      <div className="mb-6 bg-gradient-to-r from-indigo-500 to-indigo-700 rounded-lg shadow-lg overflow-hidden">
-        <div className="p-4 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <Card 
+        variant="glass" 
+        padding="md" 
+        className="mb-6 border border-homebase/20 bg-gradient-to-r from-homebase-light to-blue-50"
+      >
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex items-center">
-            <div className="mr-4 p-3 bg-white/20 backdrop-blur-sm rounded-full shadow-md">
-              <Star className="h-6 w-6 text-amber-300" />
+            <div className="mr-4 p-3 bg-white/70 rounded-full shadow-sm">
+              <Star className="h-6 w-6 text-amber-500" />
             </div>
             <div>
-              <h3 className="text-xl font-medium text-white mb-1">Sears Home Advantage Member</h3>
-              <p className="text-white/90">Your membership saves you $350 annually on home services</p>
+              <h3 className="text-xl font-medium text-homebase-dark mb-1">Sears Home Advantage Member</h3>
+              <p className="text-slate-700">Your membership saves you $350 annually on home services</p>
             </div>
           </div>
-          <Button className="bg-white text-indigo-700 hover:bg-white/90 shadow-md border border-white/20 flex items-center gap-1.5 min-w-40 md:mt-0">
+          <Button className="bg-homebase text-white hover:bg-homebase-dark shadow-sm flex items-center gap-1.5 min-w-40 md:mt-0">
             View Member Benefits
             <ArrowUpRight className="h-4 w-4" />
           </Button>
         </div>
-      </div>
+      </Card>
       
       {showWinterAlert && (
-        <div className="mb-8 animate-fade-in bg-gradient-to-r from-homebase to-blue-700 rounded-lg shadow-lg overflow-hidden">
-          <div className="p-4 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 relative">
+        <div className="mb-8 animate-fade-in">
+          <Card 
+            variant="glass" 
+            padding="md" 
+            className="border border-blue-200 bg-gradient-to-r from-blue-50 to-homebase-light relative"
+          >
             <div className="absolute top-3 right-3">
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="h-7 w-7 rounded-full bg-white/20 hover:bg-white/30 text-white"
+                className="h-7 w-7 rounded-full bg-white/60 hover:bg-white/80 text-slate-500"
                 onClick={dismissAlert}
               >
                 <X className="h-4 w-4" />
@@ -106,23 +116,25 @@ const Dashboard: React.FC = () => {
               </Button>
             </div>
             
-            <div className="flex items-center">
-              <div className="mr-4 p-3 bg-white rounded-full shadow-md">
-                <ThermometerSnowflake className="h-6 w-6 text-homebase" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <BellRing className="h-4 w-4 text-amber-200" />
-                  <h3 className="text-xl font-medium text-white">Winter Weather Alert</h3>
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="flex items-center">
+                <div className="mr-4 p-3 bg-white/80 rounded-full shadow-sm">
+                  <ThermometerSnowflake className="h-6 w-6 text-blue-500" />
                 </div>
-                <p className="text-white/90">Cold temperatures expected next week. Is your home ready?</p>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <BellRing className="h-4 w-4 text-amber-500" />
+                    <h3 className="text-xl font-medium text-slate-800">Winter Weather Alert</h3>
+                  </div>
+                  <p className="text-slate-700">Cold temperatures expected next week. Is your home ready?</p>
+                </div>
               </div>
+              <Button className="bg-white text-homebase hover:bg-white/90 hover:text-homebase-dark shadow-sm border border-slate-200 flex items-center gap-1.5 min-w-40 mt-2 md:mt-0">
+                Winterize Checklist
+                <ArrowUpRight className="h-4 w-4" />
+              </Button>
             </div>
-            <Button className="bg-white text-homebase hover:bg-white/90 hover:text-homebase-dark shadow-md border border-white/20 flex items-center gap-1.5 min-w-40 mt-2 md:mt-0">
-              Winterize Checklist
-              <ArrowUpRight className="h-4 w-4" />
-            </Button>
-          </div>
+          </Card>
         </div>
       )}
       
