@@ -127,7 +127,7 @@ const FinancialOptions: React.FC<FinancialOptionsProps> = ({ className }) => {
     {
       id: 'financing-heloc',
       name: 'Home Equity Line of Credit',
-      description: 'Use your home's equity for flexible financing',
+      description: 'Use your home\'s equity for flexible financing',
       interestRate: 'Starting at 6.75% variable APR',
       termLength: 'Up to 30 years',
       minAmount: '$10,000',
