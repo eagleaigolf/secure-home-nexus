@@ -1,9 +1,11 @@
+
 import React, { useState } from 'react';
 import { ArrowUpRight, Home, Shield, CreditCard, Calendar, ThermometerSnowflake, X, BellRing } from 'lucide-react';
 import OverviewCard from '@/components/dashboard/OverviewCard';
 import HomeValueChart from '@/components/dashboard/HomeValueChart';
 import NotificationCard from '@/components/dashboard/NotificationCard';
 import ApplianceTracker from '@/components/dashboard/ApplianceTracker';
+import ServiceProviders from '@/components/dashboard/ServiceProviders';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
@@ -139,6 +141,7 @@ const Dashboard: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <ApplianceTracker />
+        <ServiceProviders />
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
