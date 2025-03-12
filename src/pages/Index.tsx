@@ -1,6 +1,6 @@
 
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Home, Shield, CreditCard, Settings } from 'lucide-react';
+import { ArrowRight, Home, Shield, CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
@@ -9,24 +9,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-homebase-light/20 to-white">
-      <header className="border-b border-border/40 bg-white/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="container flex justify-between items-center py-4 max-w-7xl mx-auto">
-          <div className="flex items-center gap-2">
-            <Home className="h-5 w-5 text-homebase" />
-            <span className="font-bold text-xl">HOME BASE</span>
-            <span className="text-xs text-muted-foreground mt-0.5">by Sears</span>
-          </div>
-          
-          <Button 
-            onClick={() => navigate('/dashboard')} 
-            variant="default" 
-            className="bg-homebase hover:bg-homebase-dark"
-          >
-            Enter Dashboard
-          </Button>
-        </div>
-      </header>
-      
       <main>
         <section className="container py-16 max-w-7xl mx-auto">
           <div className="max-w-3xl">
