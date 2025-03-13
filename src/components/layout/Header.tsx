@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Bell, User, ShoppingBag } from 'lucide-react';
+import { Home, Bell, User, ShoppingBag, Car } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { 
   DropdownMenu, 
@@ -24,6 +24,7 @@ const Header = () => {
     if (path === '/appliances') return 'Appliances';
     if (path === '/financial') return 'Financial Services';
     if (path === '/buy') return 'Shop Appliances';
+    if (path === '/garage') return 'Garage';
     
     return path.charAt(1).toUpperCase() + path.slice(2);
   };
@@ -73,6 +74,18 @@ const Header = () => {
                 )}
               >
                 Appliances
+              </Button>
+            </Link>
+            <Link to="/garage">
+              <Button 
+                variant={location.pathname === '/garage' ? 'default' : 'ghost'}
+                className={cn(
+                  location.pathname === '/garage' ? 'bg-homebase hover:bg-homebase-dark' : ''
+                )}
+              >
+                <Car className="h-4 w-4 mr-1" />
+                Garage
+                <span className="ml-1.5 text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded">AutoNation</span>
               </Button>
             </Link>
             <Link to="/buy">
