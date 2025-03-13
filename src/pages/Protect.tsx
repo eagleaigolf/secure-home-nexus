@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Shield, Check, Sparkles, Share2 } from 'lucide-react';
+import { Shield, Check, Sparkles, Share2, ShieldPlus } from 'lucide-react';
 import ProtectContract from '@/components/protect/ProtectContract';
 import ServiceHistory from '@/components/protect/ServiceHistory';
 import MonthlyBilling from '@/components/protect/MonthlyBilling';
@@ -86,28 +86,57 @@ const Protect: React.FC = () => {
         <div className="lg:col-span-2">
           <ProtectContract contract={contract} />
 
-          {/* Protection Value Card - Now inside the same column as ProtectContract */}
+          {/* Combined Protection Value & Upgrade Card */}
           <Card variant="premium" className="p-6 mt-6">
-            <div className="text-center">
-              <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <Check className="h-8 w-8 text-green-600" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Protection Value Section */}
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
+                  <Check className="h-8 w-8 text-green-600" />
+                </div>
+                <h2 className="text-2xl font-semibold mb-2">Protection Value</h2>
+                <div className="text-3xl font-bold mb-3 text-green-600">
+                  <AnimatedNumber
+                    value={totalSaved}
+                    prefix="$"
+                    formatter={(num) => num.toLocaleString()}
+                  />
+                </div>
+                <p className="text-muted-foreground mb-4">Total savings with Sears Protect</p>
+                <div className="flex justify-center items-center gap-2 text-sm font-medium">
+                  <span>Plan cost:</span>
+                  <span className="text-muted-foreground">${annualCost}/year</span>
+                </div>
+                <div className="mt-2 text-sm">
+                  <span className="text-green-600 font-medium">{savingsRatio.toFixed(1)}x</span>
+                  <span className="text-muted-foreground ml-1">return on investment</span>
+                </div>
               </div>
-              <h2 className="text-2xl font-semibold mb-2">Protection Value</h2>
-              <div className="text-3xl font-bold mb-3 text-green-600">
-                <AnimatedNumber
-                  value={totalSaved}
-                  prefix="$"
-                  formatter={(num) => num.toLocaleString()}
-                />
-              </div>
-              <p className="text-muted-foreground mb-4">Total savings with Sears Protect</p>
-              <div className="flex justify-center items-center gap-2 text-sm font-medium">
-                <span>Plan cost:</span>
-                <span className="text-muted-foreground">${annualCost}/year</span>
-              </div>
-              <div className="mt-2 text-sm">
-                <span className="text-green-600 font-medium">{savingsRatio.toFixed(1)}x</span>
-                <span className="text-muted-foreground ml-1">return on investment</span>
+
+              {/* Upgrade Protection Section */}
+              <div className="flex flex-col justify-between">
+                <div>
+                  <div className="p-3 bg-homebase/10 text-homebase rounded-full inline-flex mb-4">
+                    <ShieldPlus className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-lg font-medium">Upgrade Your Protection</h3>
+                  <p className="text-muted-foreground mt-2 mb-4">
+                    Add more coverage or extend your existing protection plan for additional peace of mind.
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <div className="text-sm flex items-center gap-1 font-medium text-green-600">
+                    <Check className="h-4 w-4" />
+                    <span>Enhance your current coverage</span>
+                  </div>
+                  <div className="text-sm flex items-center gap-1 font-medium text-green-600">
+                    <Check className="h-4 w-4" />
+                    <span>Cover additional appliances</span>
+                  </div>
+                  <Button variant="outline" className="w-full">
+                    View Upgrade Options
+                  </Button>
+                </div>
               </div>
             </div>
           </Card>
@@ -138,23 +167,6 @@ const Protect: React.FC = () => {
               <Button className="bg-homebase hover:bg-homebase-dark flex items-center gap-1.5">
                 <Share2 className="h-4 w-4" />
                 Share Referral Link
-              </Button>
-            </div>
-          </div>
-        </Card>
-        
-        <Card variant="premium" className="p-6">
-          <div className="flex items-start gap-4">
-            <div className="p-3 bg-homebase/10 text-homebase rounded-full">
-              <Shield className="h-5 w-5" />
-            </div>
-            <div>
-              <h3 className="text-lg font-medium">Upgrade Your Protection</h3>
-              <p className="text-muted-foreground mt-1 mb-4">
-                Add more coverage or extend your existing protection plan for additional peace of mind.
-              </p>
-              <Button variant="outline" className="w-full">
-                View Upgrade Options
               </Button>
             </div>
           </div>
