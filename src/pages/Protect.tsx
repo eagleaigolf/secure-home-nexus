@@ -85,40 +85,38 @@ const Protect: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         <div className="lg:col-span-2">
           <ProtectContract contract={contract} />
+
+          {/* Protection Value Card - Now inside the same column as ProtectContract */}
+          <Card variant="premium" className="p-6 mt-6">
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
+                <Check className="h-8 w-8 text-green-600" />
+              </div>
+              <h2 className="text-2xl font-semibold mb-2">Protection Value</h2>
+              <div className="text-3xl font-bold mb-3 text-green-600">
+                <AnimatedNumber
+                  value={totalSaved}
+                  prefix="$"
+                  formatter={(num) => num.toLocaleString()}
+                />
+              </div>
+              <p className="text-muted-foreground mb-4">Total savings with Sears Protect</p>
+              <div className="flex justify-center items-center gap-2 text-sm font-medium">
+                <span>Plan cost:</span>
+                <span className="text-muted-foreground">${annualCost}/year</span>
+              </div>
+              <div className="mt-2 text-sm">
+                <span className="text-green-600 font-medium">{savingsRatio.toFixed(1)}x</span>
+                <span className="text-muted-foreground ml-1">return on investment</span>
+              </div>
+            </div>
+          </Card>
         </div>
         
         <MonthlyBilling plan={monthlyPlan} />
       </div>
       
-      {/* Protection Value Card - Moved here between contract and service history */}
-      <div className="mb-8">
-        <Card variant="premium" className="p-6">
-          <div className="text-center">
-            <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
-              <Check className="h-8 w-8 text-green-600" />
-            </div>
-            <h2 className="text-2xl font-semibold mb-2">Protection Value</h2>
-            <div className="text-3xl font-bold mb-3 text-green-600">
-              <AnimatedNumber
-                value={totalSaved}
-                prefix="$"
-                formatter={(num) => num.toLocaleString()}
-              />
-            </div>
-            <p className="text-muted-foreground mb-4">Total savings with Sears Protect</p>
-            <div className="flex justify-center items-center gap-2 text-sm font-medium">
-              <span>Plan cost:</span>
-              <span className="text-muted-foreground">${annualCost}/year</span>
-            </div>
-            <div className="mt-2 text-sm">
-              <span className="text-green-600 font-medium">{savingsRatio.toFixed(1)}x</span>
-              <span className="text-muted-foreground ml-1">return on investment</span>
-            </div>
-          </div>
-        </Card>
-      </div>
-      
-      {/* Service History - Now after the Protection Value card */}
+      {/* Service History - After the Protection Value card */}
       <div className="mb-8">
         <ServiceHistory 
           events={serviceEvents} 
