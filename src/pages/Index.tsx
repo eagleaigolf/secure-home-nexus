@@ -1,3 +1,4 @@
+
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Home, Shield, CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -12,7 +13,7 @@ const Index = () => {
         <section className="container py-16 max-w-7xl mx-auto">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Your home's command center
+              Everything for your home starts here
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
               For over 100 years, Sears has been the trusted foundation of American homes. Now, with HOMEBASE, we're reimagining homeownership for the modern era.
