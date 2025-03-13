@@ -90,15 +90,9 @@ const Protect: React.FC = () => {
         <MonthlyBilling plan={monthlyPlan} />
       </div>
       
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <div className="lg:col-span-2">
-          <ServiceHistory 
-            events={serviceEvents} 
-            totalSaved={totalSaved} 
-          />
-        </div>
-        
-        <Card variant="premium" className="flex flex-col justify-center p-6">
+      {/* Protection Value Card - Moved here between contract and service history */}
+      <div className="mb-8">
+        <Card variant="premium" className="p-6">
           <div className="text-center">
             <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
               <Check className="h-8 w-8 text-green-600" />
@@ -122,6 +116,14 @@ const Protect: React.FC = () => {
             </div>
           </div>
         </Card>
+      </div>
+      
+      {/* Service History - Now after the Protection Value card */}
+      <div className="mb-8">
+        <ServiceHistory 
+          events={serviceEvents} 
+          totalSaved={totalSaved} 
+        />
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
