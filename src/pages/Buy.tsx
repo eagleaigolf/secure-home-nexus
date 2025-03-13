@@ -139,7 +139,7 @@ const Buy = () => {
   };
 
   return (
-    <div className="animate-fade-in">
+    <div className="animate-fade-in px-4 sm:px-6 md:px-8 lg:px-12 py-6 max-w-7xl mx-auto">
       <div className="mb-6">
         <div className="inline-block bg-homebase/10 text-homebase px-2.5 py-1 rounded text-sm font-medium mb-2">
           Shop
