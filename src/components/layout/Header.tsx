@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Bell, User, ShoppingBag, Car } from 'lucide-react';
@@ -85,7 +84,6 @@ const Header = () => {
               >
                 <Car className="h-4 w-4 mr-1" />
                 Garage
-                <span className="ml-1.5 text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded">AutoNation</span>
               </Button>
             </Link>
             <Link to="/buy">
