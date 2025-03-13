@@ -1,4 +1,3 @@
-
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Home, Shield, CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -29,7 +28,7 @@ const Index = () => {
         </section>
         
         <section className="container py-16 max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center">Manage everything in one place</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center">Power Your Home, Your Way</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="p-6 text-center hover:shadow-md transition-all">
