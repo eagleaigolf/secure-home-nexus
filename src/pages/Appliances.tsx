@@ -1,9 +1,11 @@
 
 import React from 'react';
-import { Settings, Plus, Download } from 'lucide-react';
+import { Settings, Plus, Download, Shield, ShieldCheck, ShieldOff, AirVent, Waves, RotateCw, Refrigerator } from 'lucide-react';
 import ApplianceCard from '@/components/appliances/ApplianceCard';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import Card from '@/components/ui-custom/Card';
+import { Badge } from '@/components/ui/badge';
 
 const Appliances: React.FC = () => {
   // Sample appliance data
@@ -18,6 +20,7 @@ const Appliances: React.FC = () => {
       warrantyExpiration: 'June 12, 2025',
       status: 'good' as const,
       lifeRemaining: 75,
+      isProtected: true,
       nextMaintenance: {
         type: 'Clean condenser coils',
         date: 'Jan 15, 2024'
@@ -33,6 +36,7 @@ const Appliances: React.FC = () => {
       warrantyExpiration: 'March 3, 2024',
       status: 'fair' as const,
       lifeRemaining: 52,
+      isProtected: true,
       nextMaintenance: {
         type: 'Clean drain pump filter',
         date: 'Dec 5, 2023'
@@ -48,6 +52,7 @@ const Appliances: React.FC = () => {
       warrantyExpiration: 'July 28, 2023',
       status: 'needs-attention' as const,
       lifeRemaining: 21,
+      isProtected: true,
       nextMaintenance: {
         type: 'Winter tune-up',
         date: 'Nov 30, 2023'
@@ -68,11 +73,36 @@ const Appliances: React.FC = () => {
       warrantyExpiration: 'October 15, 2026',
       status: 'excellent' as const,
       lifeRemaining: 92,
+      isProtected: true,
       nextMaintenance: {
         type: 'Clean filter',
         date: 'Dec 20, 2023'
       }
+    },
+    {
+      id: '5',
+      name: 'Microwave',
+      brand: 'Kenmore',
+      model: '2215 Countertop',
+      serialNumber: 'KM5566778899',
+      purchaseDate: 'January 5, 2022',
+      warrantyExpiration: 'January 5, 2024',
+      status: 'good' as const,
+      lifeRemaining: 65,
+      isProtected: false,
+      nextMaintenance: {
+        type: 'Clean interior',
+        date: 'Dec 1, 2023'
+      }
     }
+  ];
+
+  // Types of appliances the user could add
+  const suggestedAppliances = [
+    { id: 'hvac', name: 'HVAC System', icon: <AirVent className="h-10 w-10 text-muted-foreground/50" /> },
+    { id: 'water-softener', name: 'Water Softener', icon: <Waves className="h-10 w-10 text-muted-foreground/50" /> },
+    { id: 'dryer', name: 'Dryer', icon: <RotateCw className="h-10 w-10 text-muted-foreground/50" /> },
+    { id: 'fridge', name: 'Refrigerator', icon: <Refrigerator className="h-10 w-10 text-muted-foreground/50" /> }
   ];
 
   return (
@@ -103,6 +133,7 @@ const Appliances: React.FC = () => {
               <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="attention">Needs Attention</TabsTrigger>
               <TabsTrigger value="warranty">Under Warranty</TabsTrigger>
+              <TabsTrigger value="protected">Protected</TabsTrigger>
             </TabsList>
           </Tabs>
         </div>
@@ -110,8 +141,34 @@ const Appliances: React.FC = () => {
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         {appliances.map((appliance) => (
-          <ApplianceCard key={appliance.id} appliance={appliance} />
+          <ApplianceCard 
+            key={appliance.id} 
+            appliance={{
+              ...appliance,
+              isProtected: appliance.isProtected
+            }} 
+          />
         ))}
+        
+        <h3 className="lg:col-span-2 text-lg font-medium mt-4 mb-2">Suggested Appliances to Add</h3>
+        
+        <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          {suggestedAppliances.map((appliance) => (
+            <Card 
+              key={appliance.id} 
+              variant="outline" 
+              className="p-6 border-dashed border-muted-foreground/30 flex flex-col items-center justify-center text-center hover:bg-muted/50 transition-colors cursor-pointer"
+            >
+              {appliance.icon}
+              <h3 className="mt-3 mb-1 font-medium">{appliance.name}</h3>
+              <p className="text-xs text-muted-foreground mb-3">Click to add to inventory</p>
+              <Button variant="outline" size="sm" className="mt-auto">
+                <Plus className="h-3.5 w-3.5 mr-1.5" />
+                Add {appliance.name}
+              </Button>
+            </Card>
+          ))}
+        </div>
       </div>
       
       <div className="bg-gradient-to-br from-homebase-light to-white border border-homebase/10 rounded-lg p-6 mb-8">

@@ -1,9 +1,10 @@
 
 import React from 'react';
-import { Settings, Calendar, AlertTriangle, CheckCircle, Wrench, FileText } from 'lucide-react';
+import { Settings, Calendar, AlertTriangle, CheckCircle, Wrench, FileText, ShieldCheck, ShieldOff } from 'lucide-react';
 import Card from '@/components/ui-custom/Card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
+import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
 interface Appliance {
@@ -16,6 +17,7 @@ interface Appliance {
   warrantyExpiration: string;
   status: 'excellent' | 'good' | 'fair' | 'needs-attention';
   lifeRemaining: number;
+  isProtected?: boolean;
   nextMaintenance?: {
     type: string;
     date: string;
@@ -86,12 +88,28 @@ const ApplianceCard: React.FC<ApplianceCardProps> = ({ appliance, className }) =
           </div>
         </div>
         
-        <div className={cn(
-          "px-2 py-1 rounded text-xs font-medium flex items-center gap-1",
-          getStatusStyles()
-        )}>
-          {getStatusIcon()}
-          <span>{getStatusLabel()}</span>
+        <div className="flex items-center gap-2">
+          {appliance.isProtected !== undefined && (
+            <Badge variant={appliance.isProtected ? "default" : "outline"} className={cn(
+              "flex items-center gap-1 px-2 py-1",
+              appliance.isProtected 
+                ? "bg-green-100 hover:bg-green-100 text-green-800 border-green-200" 
+                : "bg-transparent text-muted-foreground border-muted-foreground/30"
+            )}>
+              {appliance.isProtected 
+                ? <ShieldCheck className="h-3.5 w-3.5" /> 
+                : <ShieldOff className="h-3.5 w-3.5" />}
+              {appliance.isProtected ? "Protected" : "Not Protected"}
+            </Badge>
+          )}
+          
+          <div className={cn(
+            "px-2 py-1 rounded text-xs font-medium flex items-center gap-1",
+            getStatusStyles()
+          )}>
+            {getStatusIcon()}
+            <span>{getStatusLabel()}</span>
+          </div>
         </div>
       </div>
       
