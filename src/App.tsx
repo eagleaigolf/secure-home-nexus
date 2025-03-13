@@ -13,6 +13,7 @@ import Appliances from "./pages/Appliances";
 import ApplianceUpgrade from "./pages/ApplianceUpgrade";
 import Financial from "./pages/Financial";
 import NotFound from "./pages/NotFound";
+import Buy from "./pages/Buy";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
               <Route path="/appliances" element={<Appliances />} />
               <Route path="/appliances/upgrade" element={<ApplianceUpgrade />} />
               <Route path="/financial" element={<Financial />} />
+              <Route path="/buy" element={<Buy />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

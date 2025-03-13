@@ -9,6 +9,7 @@ import Index from './pages/Index';
 import NotFound from './pages/NotFound';
 import ApplianceUpgrade from './pages/ApplianceUpgrade';
 import ScoreImprovement from './pages/ScoreImprovement';
+import Buy from './pages/Buy';
 
 const AppRoutes: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes: React.FC = () => {
       <Route path="/appliances/upgrade" element={<ApplianceUpgrade />} />
       <Route path="/financial" element={<Financial />} />
       <Route path="/score" element={<ScoreImprovement />} />
+      <Route path="/buy" element={<Buy />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

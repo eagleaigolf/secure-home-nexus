@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Bell, User } from 'lucide-react';
+import { Home, Bell, User, ShoppingBag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { 
   DropdownMenu, 
@@ -23,6 +23,7 @@ const Header = () => {
     if (path === '/protect') return 'Sears Protect';
     if (path === '/appliances') return 'Appliances';
     if (path === '/financial') return 'Financial Services';
+    if (path === '/buy') return 'Shop Appliances';
     
     return path.charAt(1).toUpperCase() + path.slice(2);
   };
@@ -72,6 +73,17 @@ const Header = () => {
                 )}
               >
                 Appliances
+              </Button>
+            </Link>
+            <Link to="/buy">
+              <Button 
+                variant={location.pathname === '/buy' ? 'default' : 'ghost'}
+                className={cn(
+                  location.pathname === '/buy' ? 'bg-homebase hover:bg-homebase-dark' : ''
+                )}
+              >
+                <ShoppingBag className="h-4 w-4 mr-1" />
+                Buy
               </Button>
             </Link>
             <Link to="/financial">
