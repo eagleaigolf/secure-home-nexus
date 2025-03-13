@@ -3,6 +3,7 @@ import React from 'react';
 import { Shield, Check, Sparkles, Share2 } from 'lucide-react';
 import ProtectContract from '@/components/protect/ProtectContract';
 import ServiceHistory from '@/components/protect/ServiceHistory';
+import MonthlyBilling from '@/components/protect/MonthlyBilling';
 import Card from '@/components/ui-custom/Card';
 import AnimatedNumber from '@/components/ui-custom/AnimatedNumber';
 import { Button } from '@/components/ui/button';
@@ -62,6 +63,15 @@ const Protect: React.FC = () => {
   // Calculate savings ratio
   const savingsRatio = totalSaved / annualCost;
 
+  // Sample monthly plan data
+  const monthlyPlan = {
+    name: 'Home Appliances Protection Plan',
+    amount: 20.83,
+    dueDate: 'Nov 15, 2023',
+    autoPayEnabled: true,
+    discountAmount: 1.04 // 5% discount
+  };
+
   return (
     <div className="animate-fade-in">
       <div className="mb-6">
@@ -75,6 +85,17 @@ const Protect: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         <div className="lg:col-span-2">
           <ProtectContract contract={contract} />
+        </div>
+        
+        <MonthlyBilling plan={monthlyPlan} />
+      </div>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <div className="lg:col-span-2">
+          <ServiceHistory 
+            events={serviceEvents} 
+            totalSaved={totalSaved} 
+          />
         </div>
         
         <Card variant="premium" className="flex flex-col justify-center p-6">
@@ -102,12 +123,6 @@ const Protect: React.FC = () => {
           </div>
         </Card>
       </div>
-      
-      <ServiceHistory 
-        events={serviceEvents} 
-        totalSaved={totalSaved} 
-        className="mb-8"
-      />
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <Card variant="premium" className="p-6">
