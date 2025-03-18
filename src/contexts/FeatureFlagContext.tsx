@@ -7,17 +7,19 @@ interface FeatureFlagContextType {
   viewMode: ViewMode;
   setViewMode: (mode: ViewMode) => void;
   isFeatureEnabled: (featureName: string) => boolean;
+  MVP_FEATURES: string[];
+  FULL_FEATURES: string[];
 }
 
 // Define features for MVP vs full vision
-const MVP_FEATURES = [
+export const MVP_FEATURES = [
   'dashboard-overview', 
   'appliance-basic-tracking',
   'basic-protection',
   'basic-profile'
 ];
 
-const FULL_FEATURES = [
+export const FULL_FEATURES = [
   ...MVP_FEATURES,
   'home-value-tracking',
   'financial-services',
@@ -42,7 +44,13 @@ export const FeatureFlagProvider: React.FC<{ children: ReactNode }> = ({ childre
   };
 
   return (
-    <FeatureFlagContext.Provider value={{ viewMode, setViewMode, isFeatureEnabled }}>
+    <FeatureFlagContext.Provider value={{ 
+      viewMode, 
+      setViewMode, 
+      isFeatureEnabled,
+      MVP_FEATURES,
+      FULL_FEATURES
+    }}>
       {children}
     </FeatureFlagContext.Provider>
   );
