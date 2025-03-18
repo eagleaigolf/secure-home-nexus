@@ -4,6 +4,7 @@ import { FileText, Calendar, Wrench, ArrowRight, ShoppingCart, Plus } from 'luci
 import { Button } from '@/components/ui/button';
 import Card from '@/components/ui-custom/Card';
 import { Link } from 'react-router-dom';
+import { useFeatureFlags } from '@/contexts/FeatureFlagContext';
 
 // Sample data for appliances
 const appliances = [
@@ -34,6 +35,9 @@ const appliances = [
 ];
 
 const ApplianceTracker: React.FC = () => {
+  const { isFeatureEnabled } = useFeatureFlags();
+  const showAdvancedFeatures = isFeatureEnabled('service-providers');
+  
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'good':
@@ -76,12 +80,14 @@ const ApplianceTracker: React.FC = () => {
               </div>
             </div>
             <div className="flex gap-2">
-              <Link to={`/appliances/upgrade?appliance=${appliance.id}`}>
-                <Button size="sm" variant="outline" className="h-8 px-2">
-                  <ShoppingCart className="h-3.5 w-3.5" />
-                  <span className="sr-only md:not-sr-only md:ml-1.5">Replace / Upgrade</span>
-                </Button>
-              </Link>
+              {showAdvancedFeatures && (
+                <Link to={`/appliances/upgrade?appliance=${appliance.id}`}>
+                  <Button size="sm" variant="outline" className="h-8 px-2">
+                    <ShoppingCart className="h-3.5 w-3.5" />
+                    <span className="sr-only md:not-sr-only md:ml-1.5">Replace / Upgrade</span>
+                  </Button>
+                </Link>
+              )}
               <Button size="sm" variant="outline" className="h-8 px-2">
                 <FileText className="h-3.5 w-3.5" />
                 <span className="sr-only md:not-sr-only md:ml-1.5">Manual</span>

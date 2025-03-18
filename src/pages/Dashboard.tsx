@@ -10,8 +10,11 @@ import HomeBaseScore from '@/components/dashboard/HomeBaseScore';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import Card from '@/components/ui-custom/Card';
+import { useFeatureFlags } from '@/contexts/FeatureFlagContext';
 
 const Dashboard: React.FC = () => {
+  const { viewMode, isFeatureEnabled } = useFeatureFlags();
+  
   const notifications = [
     {
       id: '1',
@@ -53,6 +56,20 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="animate-fade-in px-4 md:px-6">
+      {viewMode === 'mvp' && (
+        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-md text-blue-700">
+          <div className="font-medium">MVP View Active</div>
+          <p className="text-sm">You're viewing the Minimum Viable Product version with essential features only.</p>
+        </div>
+      )}
+      
+      {viewMode === 'full' && (
+        <div className="mb-4 p-3 bg-purple-50 border border-purple-200 rounded-md text-purple-700">
+          <div className="font-medium">Full Vision View Active</div>
+          <p className="text-sm">You're viewing the complete vision with all planned features.</p>
+        </div>
+      )}
+      
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-2">
           <div className="bg-homebase text-white p-1.5 rounded-md">
@@ -64,12 +81,14 @@ const Dashboard: React.FC = () => {
         <p className="text-muted-foreground mt-1">Here's what's happening with your home today.</p>
       </div>
       
-      {/* HomeBase Score above the weather alert */}
-      <div className="mb-6">
-        <HomeBaseScore score={72} />
-      </div>
+      {/* HomeBase Score - show in full vision only */}
+      {isFeatureEnabled('advanced-analytics') && (
+        <div className="mb-6">
+          <HomeBaseScore score={72} />
+        </div>
+      )}
       
-      {/* Weather Alert spanning full width */}
+      {/* Weather Alert - show in both */}
       <div className="mb-6">
         <Card 
           variant="outline" 
@@ -109,12 +128,14 @@ const Dashboard: React.FC = () => {
           type="number"
           icon={<Shield className="h-5 w-5" />}
         />
-        <OverviewCard
-          title="Member Credit"
-          value={5000}
-          type="currency"
-          icon={<CreditCard className="h-5 w-5" />}
-        />
+        {isFeatureEnabled('financial-services') && (
+          <OverviewCard
+            title="Member Credit"
+            value={5000}
+            type="currency"
+            icon={<CreditCard className="h-5 w-5" />}
+          />
+        )}
         <OverviewCard
           title="Upcoming Services"
           value={2}
@@ -126,82 +147,92 @@ const Dashboard: React.FC = () => {
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        <HomeValueChart className="lg:col-span-2" />
-        <NotificationCard notifications={notifications} />
+        {isFeatureEnabled('home-value-tracking') && (
+          <HomeValueChart className="lg:col-span-2" />
+        )}
+        
+        {isFeatureEnabled('notifications') && (
+          <NotificationCard notifications={notifications} />
+        )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <ApplianceTracker />
-        <ServiceProviders />
+        
+        {isFeatureEnabled('service-providers') && (
+          <ServiceProviders />
+        )}
       </div>
       
-      <div className="mb-8">
-        <div className="flex items-center gap-2 mb-4">
-          <Award className="h-5 w-5 text-homebase" />
-          <h3 className="text-lg font-medium">Exclusive Member Services</h3>
+      {isFeatureEnabled('member-services') && (
+        <div className="mb-8">
+          <div className="flex items-center gap-2 mb-4">
+            <Award className="h-5 w-5 text-homebase" />
+            <h3 className="text-lg font-medium">Exclusive Member Services</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="bg-white rounded-lg border border-homebase/20 p-5 transition-all hover:shadow-md hover:border-homebase/40">
+              <div className="flex justify-between items-start mb-3">
+                <div className="p-2 bg-homebase/10 text-homebase rounded">
+                  <Shield className="h-5 w-5" />
+                </div>
+                <div className="flex items-center gap-1">
+                  <Star className="h-4 w-4 text-amber-400" />
+                  <span className="text-xs font-medium text-homebase">Member Exclusive</span>
+                </div>
+              </div>
+              <h3 className="text-lg font-medium">Sears Protect</h3>
+              <p className="text-sm text-muted-foreground mt-1 mb-4">Premium warranty coverage at member rates</p>
+              <Link to="/protect">
+                <Button variant="ghost" className="w-full justify-between">
+                  View Protection
+                  <ArrowUpRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+            
+            <div className="bg-white rounded-lg border border-homebase/20 p-5 transition-all hover:shadow-md hover:border-homebase/40">
+              <div className="flex justify-between items-start mb-3">
+                <div className="p-2 bg-homebase/10 text-homebase rounded">
+                  <CreditCard className="h-5 w-5" />
+                </div>
+                <div className="flex items-center gap-1">
+                  <Star className="h-4 w-4 text-amber-400" />
+                  <span className="text-xs font-medium text-homebase">Member Exclusive</span>
+                </div>
+              </div>
+              <h3 className="text-lg font-medium">Financial Services</h3>
+              <p className="text-sm text-muted-foreground mt-1 mb-4">Special financing options for members</p>
+              <Link to="/financial">
+                <Button variant="ghost" className="w-full justify-between">
+                  Explore Options
+                  <ArrowUpRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+            
+            <div className="bg-white rounded-lg border border-homebase/20 p-5 transition-all hover:shadow-md hover:border-homebase/40">
+              <div className="flex justify-between items-start mb-3">
+                <div className="p-2 bg-homebase/10 text-homebase rounded">
+                  <Home className="h-5 w-5" />
+                </div>
+                <div className="flex items-center gap-1">
+                  <Star className="h-4 w-4 text-amber-400" />
+                  <span className="text-xs font-medium text-homebase">Member Exclusive</span>
+                </div>
+              </div>
+              <h3 className="text-lg font-medium">Home Management</h3>
+              <p className="text-sm text-muted-foreground mt-1 mb-4">Priority service for all appliances</p>
+              <Link to="/appliances">
+                <Button variant="ghost" className="w-full justify-between">
+                  Manage Appliances
+                  <ArrowUpRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          <div className="bg-white rounded-lg border border-homebase/20 p-5 transition-all hover:shadow-md hover:border-homebase/40">
-            <div className="flex justify-between items-start mb-3">
-              <div className="p-2 bg-homebase/10 text-homebase rounded">
-                <Shield className="h-5 w-5" />
-              </div>
-              <div className="flex items-center gap-1">
-                <Star className="h-4 w-4 text-amber-400" />
-                <span className="text-xs font-medium text-homebase">Member Exclusive</span>
-              </div>
-            </div>
-            <h3 className="text-lg font-medium">Sears Protect</h3>
-            <p className="text-sm text-muted-foreground mt-1 mb-4">Premium warranty coverage at member rates</p>
-            <Link to="/protect">
-              <Button variant="ghost" className="w-full justify-between">
-                View Protection
-                <ArrowUpRight className="h-4 w-4" />
-              </Button>
-            </Link>
-          </div>
-          
-          <div className="bg-white rounded-lg border border-homebase/20 p-5 transition-all hover:shadow-md hover:border-homebase/40">
-            <div className="flex justify-between items-start mb-3">
-              <div className="p-2 bg-homebase/10 text-homebase rounded">
-                <CreditCard className="h-5 w-5" />
-              </div>
-              <div className="flex items-center gap-1">
-                <Star className="h-4 w-4 text-amber-400" />
-                <span className="text-xs font-medium text-homebase">Member Exclusive</span>
-              </div>
-            </div>
-            <h3 className="text-lg font-medium">Financial Services</h3>
-            <p className="text-sm text-muted-foreground mt-1 mb-4">Special financing options for members</p>
-            <Link to="/financial">
-              <Button variant="ghost" className="w-full justify-between">
-                Explore Options
-                <ArrowUpRight className="h-4 w-4" />
-              </Button>
-            </Link>
-          </div>
-          
-          <div className="bg-white rounded-lg border border-homebase/20 p-5 transition-all hover:shadow-md hover:border-homebase/40">
-            <div className="flex justify-between items-start mb-3">
-              <div className="p-2 bg-homebase/10 text-homebase rounded">
-                <Home className="h-5 w-5" />
-              </div>
-              <div className="flex items-center gap-1">
-                <Star className="h-4 w-4 text-amber-400" />
-                <span className="text-xs font-medium text-homebase">Member Exclusive</span>
-              </div>
-            </div>
-            <h3 className="text-lg font-medium">Home Management</h3>
-            <p className="text-sm text-muted-foreground mt-1 mb-4">Priority service for all appliances</p>
-            <Link to="/appliances">
-              <Button variant="ghost" className="w-full justify-between">
-                Manage Appliances
-                <ArrowUpRight className="h-4 w-4" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
