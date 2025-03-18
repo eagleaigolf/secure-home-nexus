@@ -1,7 +1,7 @@
 
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
-type ViewMode = 'mvp' | 'full';
+export type ViewMode = 'mvp' | 'full';
 
 interface FeatureFlagContextType {
   viewMode: ViewMode;
