@@ -178,9 +178,7 @@ export const FeatureFlagProvider: React.FC<{ children: ReactNode }> = ({ childre
       setEnabledFeatures,
       features,
       updateFeatureDefaults,
-      resetToDefaults,
-      MVP_FEATURES,
-      FULL_FEATURES
+      resetToDefaults
     }}>
       {children}
     </FeatureFlagContext.Provider>
