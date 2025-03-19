@@ -42,11 +42,11 @@ const Admin: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Admin Header - Clearly separated from the main app */}
-      <div className="bg-slate-900 text-white py-3 px-4">
+      <div className="bg-slate-900 text-white py-4 px-4">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2">
             <Settings className="h-5 w-5" />
-            <span className="font-semibold">HOMEBASE Admin Controls</span>
+            <span className="font-semibold text-lg">PROTOTYPE ADMIN CONTROLS</span>
           </div>
           <Button 
             variant="outline" 
@@ -54,27 +54,26 @@ const Admin: React.FC = () => {
             className="text-white hover:bg-slate-700 border-white"
             onClick={() => navigate('/')}
           >
-            <ArrowLeft className="h-4 w-4 mr-1" /> Back to HOMEBASE
+            <ArrowLeft className="h-4 w-4 mr-1" /> Return to HOMEBASE
           </Button>
         </div>
       </div>
       
       {/* Prototype Controls Banner */}
-      <div className="bg-yellow-100 border-b border-yellow-300">
-        <div className="container mx-auto py-2 px-4">
+      <div className="bg-yellow-200 border-b border-yellow-300 py-3">
+        <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            <div className="font-medium text-yellow-800">Prototype Mode Controls</div>
+            <div className="font-medium text-yellow-800">Prototype View Mode</div>
             <div className="flex items-center gap-3">
-              <span className="text-sm font-medium text-yellow-800">View Mode:</span>
-              <div className="flex items-center gap-2 bg-white px-2 py-1 rounded-md border border-yellow-300">
-                <span className={`text-sm ${viewMode === 'mvp' ? 'font-bold text-blue-600' : 'text-gray-500'}`}>MVP</span>
+              <div className="flex items-center gap-2 bg-white px-3 py-2 rounded-md border border-yellow-300">
+                <span className={`font-medium ${viewMode === 'mvp' ? 'text-blue-600' : 'text-gray-500'}`}>MVP</span>
                 <Switch 
                   id="prototype-mode-switch"
                   checked={viewMode === 'full'}
                   onCheckedChange={(checked) => setViewMode(checked ? 'full' : 'mvp')}
                   className="data-[state=checked]:bg-purple-600"
                 />
-                <span className={`text-sm ${viewMode === 'full' ? 'font-bold text-purple-600' : 'text-gray-500'}`}>Full Vision</span>
+                <span className={`font-medium ${viewMode === 'full' ? 'text-purple-600' : 'text-gray-500'}`}>Full Vision</span>
                 {isCustomConfig() && <span className="text-xs bg-orange-100 text-orange-800 px-2 py-0.5 rounded-full">Custom</span>}
               </div>
             </div>
