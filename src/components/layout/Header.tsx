@@ -36,7 +36,7 @@ const Header = () => {
         <div className="flex items-center gap-2">
           <Link to="/" className="flex items-center gap-2">
             <Home className="h-5 w-5 text-homebase" />
-            <span className="font-bold text-xl">AMERICASHOMEMANAGER.AI</span>
+            <span className="font-bold text-xl">HOMEBASE</span>
             <span className="text-xs text-muted-foreground mt-0.5">by Sears</span>
           </Link>
           
