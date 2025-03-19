@@ -11,11 +11,9 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
 import { useFeatureFlags } from '@/contexts/FeatureFlagContext';
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
 const Header = () => {
   const location = useLocation();
-  const { viewMode, setViewMode } = useFeatureFlags();
   
   // Get current page title
   const getPageTitle = () => {
@@ -23,7 +21,7 @@ const Header = () => {
     
     if (path === '/') return 'Home';
     if (path === '/dashboard') return 'Dashboard';
-    if (path === '/protect') return 'Sears Protect';
+    if (path === '/protect') return 'Protect';
     if (path === '/appliances') return 'Appliances';
     if (path === '/financial') return 'Financial Services';
     if (path === '/buy') return 'Shop Appliances';
@@ -48,18 +46,6 @@ const Header = () => {
         </div>
         
         <div className="flex items-center gap-4">
-          {/* MVP/Full Vision Toggle */}
-          <div className="hidden md:flex items-center border border-border/60 rounded-md p-1 mr-2">
-            <ToggleGroup type="single" value={viewMode} onValueChange={(value) => value && setViewMode(value as 'mvp' | 'full')}>
-              <ToggleGroupItem value="mvp" aria-label="MVP View" className="text-xs px-2 py-1 data-[state=on]:bg-homebase data-[state=on]:text-white">
-                MVP
-              </ToggleGroupItem>
-              <ToggleGroupItem value="full" aria-label="Full Vision" className="text-xs px-2 py-1 data-[state=on]:bg-homebase data-[state=on]:text-white">
-                Full Vision
-              </ToggleGroupItem>
-            </ToggleGroup>
-          </div>
-          
           <nav className="hidden md:flex items-center gap-1">
             <Link to="/dashboard">
               <Button 
@@ -126,26 +112,6 @@ const Header = () => {
           </nav>
           
           <div className="flex items-center gap-2">
-            {/* MVP/Full Vision Toggle for mobile */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild className="md:hidden">
-                <Button 
-                  variant="ghost" 
-                  size="icon"
-                >
-                  <Layers className="h-5 w-5" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setViewMode('mvp')} className={viewMode === 'mvp' ? 'bg-secondary' : ''}>
-                  MVP View
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setViewMode('full')} className={viewMode === 'full' ? 'bg-secondary' : ''}>
-                  Full Vision View
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button 
