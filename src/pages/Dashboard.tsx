@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { useFeatureFlags } from '@/contexts/FeatureFlagContext';
-import ViewModeAlert from '@/components/dashboard/ViewModeAlert';
 import UserGreeting from '@/components/dashboard/UserGreeting';
 import HomeBaseScore from '@/components/dashboard/HomeBaseScore';
 import WeatherAlert from '@/components/dashboard/WeatherAlert';
@@ -15,7 +14,6 @@ const Dashboard: React.FC = () => {
   
   return (
     <div className="animate-fade-in px-4 md:px-6">
-      <ViewModeAlert viewMode={viewMode} />
       <UserGreeting />
       
       {/* HomeBase Score - show in full vision only */}
