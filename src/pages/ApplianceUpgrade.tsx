@@ -138,7 +138,7 @@ const ApplianceUpgrade: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <Card variant="outline" padding="md" className="bg-homebase-light/50">
-          <h3 className="text-lg font-medium mb-2">Why upgrade with HOMEBASE?</h3>
+          <h3 className="text-lg font-medium mb-2">Why upgrade with AmericasHomeManager.ai?</h3>
           <ul className="space-y-2">
             <li className="flex items-start gap-2">
               <div className="mt-1 text-homebase">

@@ -57,7 +57,7 @@ const HomeBaseScore: React.FC<HomeBaseScoreProps> = ({ score, className }) => {
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
             <Shield className="h-4 w-4 text-homebase" />
-            <h3 className="font-medium">HomeBase Score</h3>
+            <h3 className="font-medium">AmericasHomeManager.ai Score</h3>
           </div>
           
           <p className="text-sm text-muted-foreground mb-2">

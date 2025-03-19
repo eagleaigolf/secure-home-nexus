@@ -82,7 +82,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggle }) => {
             isOpen ? "opacity-100 w-auto" : "opacity-0 w-0 md:w-auto md:opacity-100"
           )}>
             <div className="font-display font-bold text-xl tracking-tight">
-              HOME<span className="text-homebase">BASE</span>
+              AMERICAS<span className="text-homebase">HOME</span>MANAGER.AI
             </div>
           </div>
           
