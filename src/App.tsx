@@ -9,6 +9,7 @@ import Header from "./components/layout/Header";
 import AppRoutes from "./routes";
 import { FeatureFlagProvider } from "./contexts/FeatureFlagContext";
 import { useFeatureFlags } from "./contexts/FeatureFlagContext";
+import { Switch } from "@/components/ui/switch";
 
 const queryClient = new QueryClient();
 
@@ -26,18 +27,25 @@ const PrototypeControls = () => {
       <div className="container mx-auto flex items-center justify-between">
         <div className="text-sm font-medium text-yellow-800">Prototype Mode</div>
         <div className="flex items-center gap-3">
-          <span className={`text-sm ${viewMode === 'mvp' ? 'font-bold text-blue-600' : ''}`}>
-            MVP
-          </span>
+          <div className="flex items-center gap-2 bg-white px-2 py-1 rounded-md border border-yellow-300">
+            <span className={`text-sm ${viewMode === 'mvp' ? 'font-bold text-blue-600' : 'text-gray-500'}`}>
+              MVP
+            </span>
+            <Switch 
+              checked={viewMode === 'full'}
+              onCheckedChange={(checked) => setViewMode(checked ? 'full' : 'mvp')}
+              className="data-[state=checked]:bg-purple-600"
+            />
+            <span className={`text-sm ${viewMode === 'full' ? 'font-bold text-purple-600' : 'text-gray-500'}`}>
+              Full Vision
+            </span>
+          </div>
           <a 
             href="/admin" 
             className="px-2 py-1 text-xs bg-slate-800 text-white rounded hover:bg-slate-700"
           >
             Admin Controls
           </a>
-          <span className={`text-sm ${viewMode === 'full' ? 'font-bold text-purple-600' : ''}`}>
-            Full Vision
-          </span>
         </div>
       </div>
     </div>
