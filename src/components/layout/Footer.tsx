@@ -9,10 +9,10 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <div className="font-display font-bold text-lg tracking-tight">
-              HOME<span className="text-homebase">BASE</span>
+              ONE<span className="text-homebase">SEARS</span>
             </div>
             <p className="text-xs text-muted-foreground mt-1">
-              By Sears • Since 1893
+              Control Room • Since 1893
             </p>
           </div>
           

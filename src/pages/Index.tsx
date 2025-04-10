@@ -1,4 +1,3 @@
-
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Home, Shield, CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -13,10 +12,10 @@ const Index = () => {
         <section className="container py-16 max-w-7xl mx-auto">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Everything for your home starts here
+              OneSears: Your Complete Control Room
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              For over 100 years, Sears has been the trusted foundation of American homes. Now, with AmericasHomeManager.ai, we're reimagining homeownership for the modern era.
+              For over 100 years, Sears has been the trusted foundation of American homes. Now, OneSears Control Room brings everything together.
             </p>
             <Button 
               onClick={() => navigate('/dashboard')} 
@@ -109,8 +108,8 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center mb-8">
             <div className="flex items-center gap-2 mb-4 md:mb-0">
               <Home className="h-5 w-5 text-white" />
-              <span className="font-bold text-xl">AMERICASHOMEMANAGER.AI</span>
-              <span className="text-xs text-slate-400 mt-0.5">by Sears</span>
+              <span className="font-bold text-xl">ONESEARS</span>
+              <span className="text-xs text-slate-400 mt-0.5">Control Room</span>
             </div>
             
             <div className="flex gap-6">
